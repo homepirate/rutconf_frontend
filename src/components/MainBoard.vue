@@ -30,28 +30,40 @@
                 </span>
             </my-button-mc>
         </div>
+        <div class="my-fat-button">
+            <my-fat-button
+                style="margin-top: 5px; margin-left: 5px; width: 390px; height: 190px ; display: flex; align-items: center;"
+                @click="redirectToBlankPage">
+                <IconCreateConf> </IconCreateConf>
+                Создать конференцию
+            </my-fat-button>
+        </div>
     </div>
 </template>
 
 <script>
 import MyButtonMC from './UI/MyButtonMC.vue';
+import MyFatButton from './UI/MyFatButton.vue';
 import IconMicroON from './icons/IconMicroON.vue';
 import IconMicroOFF from './icons/IconMicroOFF.vue';
 import IconCamOFF from './icons/IconCamOFF.vue';
 import IconCamON from './icons/IconCamON.vue';
 import VideoWin from './UI/VideoWin.vue';
 import MicroWin from './UI/MicroWin.vue'
+import IconCreateConf from './icons/IconCreateConf.vue';
 
 export default {
     name: 'main-board',
     components: {
         MyButtonMC,
+        MyFatButton,
         IconMicroON,
         IconMicroOFF,
         IconCamON,
         IconCamOFF,
         VideoWin,
         MicroWin,
+        IconCreateConf,
     },
     data() {
         return {
@@ -91,6 +103,9 @@ export default {
                     }
                 });
             }
+        },
+        redirectToBlankPage() {
+            window.open('about:blank', '_blank');
         }
     }
 };
