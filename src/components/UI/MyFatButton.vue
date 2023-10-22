@@ -19,5 +19,6 @@
     cursor: pointer;
     vertical-align: middle;
     font-size: 18px;
+    color: white;
   }
   </style>
