@@ -1,10 +1,20 @@
+
 <template>
     <div class="main-rectangle">
+        <div class="webcam-window">
+            <div class="cam-video-off" v-if="!isCamActive">
+                <IconCamOFF style="width: 75%; height: 75%;"></IconCamOFF>
+            </div>
+            <VideoWin v-else ref="videoWin" :isCamActive="isCamActive" />
+        </div>
+        <div class="micro-window">
+            <MicroWin ref="microWin" v-show="isMicroActive" :isMicroActive="isMicroActive" />
+        </div>
         <div class="btn-micro-cam">
             <my-button-mc style="margin-left: 5px" @click="toggleMicrophone">
                 <span style="display: flex; align-items: center;">
                     <IconMicroOFF v-if="!isMicroActive"></IconMicroOFF>
-                    <IconMicroON v-if="isMicroActive"></IconMicroON>
+                    <IconMicroON v-else ></IconMicroON>
                     <span style="margin-left: 5px;">
                         {{ isMicroActive ? "Выключить микрофон" : "Включить микрофон" }}
                     </span>
@@ -13,7 +23,7 @@
             <my-button-mc style="margin-left: 5px" @click="toggleCamera">
                 <span style="display: flex; align-items: center;">
                     <IconCamOFF v-if="!isCamActive"></IconCamOFF>
-                    <IconCamON v-if="isCamActive"></IconCamON>
+                    <IconCamON v-else></IconCamON>
                     <span style="margin-left: 5px;">
                         {{ isCamActive ? "Выключить камеру" : "Включить камеру" }}
                     </span>
@@ -38,6 +48,8 @@ import IconMicroON from './icons/IconMicroON.vue';
 import IconMicroOFF from './icons/IconMicroOFF.vue';
 import IconCamOFF from './icons/IconCamOFF.vue';
 import IconCamON from './icons/IconCamON.vue';
+import VideoWin from './UI/VideoWin.vue';
+import MicroWin from './UI/MicroWin.vue'
 import IconCreateConf from './icons/IconCreateConf.vue';
 
 export default {
@@ -49,6 +61,8 @@ export default {
         IconMicroOFF,
         IconCamON,
         IconCamOFF,
+        VideoWin,
+        MicroWin,
         IconCreateConf,
     },
     data() {
@@ -60,9 +74,35 @@ export default {
     methods: {
         toggleMicrophone() {
             this.isMicroActive = !this.isMicroActive;
+            if (this.isMicroActive){
+                this.$nextTick(() => {
+                    if (this.$refs.microWin) {
+                        this.$refs.microWin.initializeMicrophone();
+                    }
+                });
+            } else {
+                this.$nextTick(() => {
+                    if (this.$refs.microWin) {
+                        this.$refs.microWin.stopMicrophone();
+                    }
+                });
+            }
         },
         toggleCamera() {
             this.isCamActive = !this.isCamActive;
+            if (this.isCamActive) {
+                this.$nextTick(() => {
+                    if (this.$refs.videoWin) {
+                        this.$refs.videoWin.startCamera();
+                    }
+                });
+            } else {
+                this.$nextTick(() => {
+                    if (this.$refs.videoWin) {
+                        this.$refs.videoWin.stopCamera();
+                    }
+                });
+            }
         },
         redirectToBlankPage() {
             window.open('about:blank', '_blank');
@@ -72,14 +112,38 @@ export default {
 </script>
 
 <style scoped>
-.main-rectangle {
-    width: 401px;
-    height: 606px;
-    border-radius: 25px;
-    background: rgba(158, 0, 255, 0.3);
-}
+    .main-rectangle {
+        width: 401px;
+        height: 606px;
+        border-radius: 25px;
+        background: rgba(158, 0, 255, 0.3);
+    }
 
-.btn-micro-cam {
-    margin-top: 329px;
-}
+
+    .webcam-window {
+        width: 385px;
+        height: 225px;
+        margin: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 25px;
+        overflow: hidden; /* Это чтоб блок внутри занимал полностью родительский div  */
+
+        
+    }
+    .micro-window{
+        background:rgba(0, 0, 0, 0.7);
+        width: 385px;
+        height: 80px;
+        border-radius: 25px;
+        margin: 10px;
+        overflow: hidden;
+    }
+
+    .cam-video-off {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 </style>
