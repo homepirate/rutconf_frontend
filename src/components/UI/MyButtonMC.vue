@@ -21,5 +21,10 @@
     vertical-align: middle;
     font-size: 18px;
     color: white;
+    transition: transform 0.2s ease-in-out; 
   }
+
+  .btn:hover{
+    transform: scale(1.025);
+}
   </style>

@@ -1,6 +1,7 @@
 import Main from "@/pages/Main.vue";
 import {createRouter, createWebHistory} from "vue-router";
 import ConfCreation from "@/pages/ConfCreation.vue";
+import CallWindow from "@/pages/CallWindow.vue";
 
 const routes = [
     {
@@ -12,6 +13,10 @@ const routes = [
         path: '/create-call',
         component: ConfCreation,
     },
+    {
+        path: '/call/:call_url',
+        component: CallWindow,
+    }
 ]
 
 const router = createRouter({
