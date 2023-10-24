@@ -30,12 +30,13 @@
                 </span>
             </my-button-mc>
         </div>
-        <div class="my-fat-button">
-            <my-fat-button
-                style="margin-top: 5px; margin-left: 5px; width: 390px; height: 190px ; display: flex; align-items: center;"
-                @click="redirectToBlankPage">
-                <IconCreateConf> </IconCreateConf>
-                Создать конференцию
+        <div class="my-fat-button" style="display: flex; justify-content: center; align-items: center;">
+            <my-fat-button style="margin-top: 10px; width: 390px; height: 173px;" >
+                <span style=" display: flex; align-items: center;
+             display: flex; flex-direction: column; align-items: center;" @click="$router.push('/create-call')">
+                    <IconCreateConf></IconCreateConf>
+                    <span style="margin-top: 5px; font-size: 20px;">Создать конференцию</span>
+                </span>
             </my-fat-button>
         </div>
     </div>
@@ -104,9 +105,6 @@ export default {
                 });
             }
         },
-        redirectToBlankPage() {
-            window.open('about:blank', '_blank');
-        }
     }
 };
 </script>

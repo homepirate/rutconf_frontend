@@ -29,7 +29,8 @@
 }
   h1{
     size: 25px;
-    font-family: 'Inter';
+    font-family: 'Inter'; 
+    font-style: italic;
  }
 
 .main-board-wrapper {

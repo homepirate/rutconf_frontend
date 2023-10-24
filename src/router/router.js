@@ -8,11 +8,15 @@ const routes = [
         component: Main
         
     },
+    {
+        path: '/create-call',
+        component: ConfCreation,
+    },
 ]
 
 const router = createRouter({
     routes,
     history: createWebHistory()
-})
+    })
 
 export default router;

@@ -4,18 +4,18 @@
         <icon-logo/>
         <h1>RUT CONF</h1>
       </div>
-      <div class="main-board-wrapper">
-        <main-board/>
+      <div class="create-conf-board-wrapper">
+        <create-conf-board></create-conf-board>
       </div>
     </div>
 </template>
   
 <script>
-  import MainBoard from "@/components/MainBoard.vue"
+  import CreateConfBoard from "@/components/CreateConfBoard.vue"
   import IconLogo from "@/components/icons/IconLogo.vue";
   export default {
     components : {
-      MainBoard,
+      CreateConfBoard,
       IconLogo,
     }
   
@@ -29,13 +29,17 @@
 }
   h1{
     size: 25px;
-    font-family: 'Inter';
+    font-family: 'Inter'; 
+    font-style: italic;
  }
 
-.main-board-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.create-conf-board-wrapper {
+  position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 40%;
+    left: 38%;
 }
   
 </style>
