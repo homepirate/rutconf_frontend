@@ -15,30 +15,49 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                displayName: '',
-                urlValue: '',
+import { mapMutations } from 'vuex';
+import User from "@/components/User.js"
+export default {
+  props: {
+    displayName: {
+      type: String,
+      required: true
+    }
+  },
+    data() {
+    return {
+      displayName: '',
+      urlValue: '',
+      isConferenceCreator: true,
+    }
+},
+
+    name: 'createconf-board',
+    components: {},
+    async mounted() {
+        this.urlValue = await this.fetchDataFromBackend();;
+    },
+    methods: { 
+       ////////////////////////////// TEST //////////////////////////
+    //    ...mapMutations(['addToGlobalArray', 'removeFromGlobalArray']),
+    // addItem() {
+    //   this.addToGlobalArray(new User(this.displayName)); // Добавление элемента в глобальный массив
+    // },
+    // removeItem(index) {
+    //   this.removeFromGlobalArray(index); // Удаление элемента из глобального массива
+    // },
+// ////////////////////////////////////////////////////
+      ...mapMutations(['setDisplayName']),
+        async fetchDataFromBackend() {
+            try {
+                const response = await fetch('https://api.example.com/data');
+                const data = await response.json();
+                return data.value;
+            } catch (error) {
+                console.error(error);
+                return "NONE";
             }
         },
-
-        name: 'createconf-board',
-        components: {},
-        async mounted() {
-            this.urlValue = await this.fetchDataFromBackend();;
-        },
-        methods: {
-            async fetchDataFromBackend() {
-                try {
-                    const response = await fetch('https://api.example.com/data');
-                    const data = await response.json();
-                    return data.value;
-                } catch (error) {
-                    console.error(error);
-                    return "NONE";
-                }
-            },
 
             async sendDataToBackend() {
                 try {
@@ -64,19 +83,26 @@
                 }
             },
 
-            async createAndConnect() {
-                const urlValue = document.querySelector('.input-url-for-conf').value;
-                console.log(urlValue)
-                await this.sendDataToBackend();
+        async createAndConnect() {
+          if (this.displayName.trim() === ""){
+            return
+          }
+      const urlValue = document.querySelector('.input-url-for-conf').value;
+      console.log(urlValue)
+      await this.sendDataToBackend();
 
-                if (urlValue) {
-                    this.conferenceUrl = urlValue;
-                    // Перейти на страницу с конференцией
-                    this.$router.push(`/call/${urlValue}`);
-                }
-            },
-        },
-    };
+      if (urlValue) {
+        // this.conferenceUrl = urlValue;
+        // Перейти на страницу с конференцией
+        this.$router.push(`/call/${urlValue}`);
+        this.setDisplayName(this.displayName);
+        //////// TEST////////
+        // this.addItem(); 
+        /////////////
+      }
+    },
+    },
+};
 </script>
 
 <style scoped>

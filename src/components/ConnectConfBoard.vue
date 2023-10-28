@@ -14,24 +14,34 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                displayName: '',
-                urlValue: '',
-            }
-        },
+import { mapMutations } from 'vuex';
+import User from "@/components/User.js"
+export default {
+    data() {
+    return {
+      displayName: '',
+    }
+},
 
-        name: 'createconf-board',
-        components: {},
-        async mounted() {
-        },
-        methods: {
-
-            async sendDataToBackend() {
-                try {
-                    console.log(this.displayName)
-                    const dspName = this.displayName;
+    name: 'connect-conf-board',
+    components: {},
+    async mounted() {
+    },
+    methods: {
+      ////////////////////////////// TEST //////////////////////////
+    //   ...mapMutations(['addToGlobalArray', 'removeFromGlobalArray']),
+    // addItem() {
+    //   this.addToGlobalArray(new User(this.displayName)); // Добавление элемента в глобальный массив
+    // },
+    // removeItem(index) {
+    //   this.removeFromGlobalArray(index); // Удаление элемента из глобального массива
+    // },
+// ////////////////////////////////////////////////////
+      ...mapMutations(['setDisplayName']),
+    async sendDataToBackend() {
+      try {
+        console.log(this.displayName)
+        const dspName = this.displayName;
 
                     // Отправить displayName на бекенд
                     const response = await fetch('https://api.example.com/data', {
@@ -52,11 +62,18 @@
                 }
             },
 
-            async Connect() {
-                await this.sendDataToBackend();
-            },
-        },
-    };
+        async Connect() {
+          if (this.displayName.trim() === ""){
+            return
+          }
+      await this.sendDataToBackend(); 
+      this.setDisplayName(this.displayName); 
+      //////// TEST////////
+      // this.addItem(); 
+        /////////////
+    },
+    },
+};
 </script>
 
 <style scoped>
