@@ -20,7 +20,7 @@
                     </span>
                 </span>
             </my-button-mc>
-            <my-button-mc style="margin-left: 5px" @click="toggleCamera">
+            <my-button-mc style="margin-right: 5px" @click="toggleCamera">
                 <span style="display: flex; align-items: center;">
                     <IconCamOFF v-if="!isCamActive"></IconCamOFF>
                     <IconCamON v-else></IconCamON>
@@ -31,7 +31,7 @@
             </my-button-mc>
         </div>
         <div class="my-fat-button" style="display: flex; justify-content: center; align-items: center;">
-            <my-fat-button style="margin-top: 10px; width: 390px; height: 173px;">
+            <my-fat-button style="margin-top: 5px; margin-bottom: 10px; margin-left: 10px; margin-right: 10px; width: 383px; height: 173px;">
                 <span style=" display: flex; align-items: center;
              display: flex; flex-direction: column; align-items: center;" @click="$router.push('/create-call')">
                     <IconCreateConf></IconCreateConf>
@@ -115,13 +115,19 @@
         height: 606px;
         border-radius: 25px;
         background: rgba(158, 0, 255, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
 
     .webcam-window {
         width: 385px;
         height: 225px;
-        margin: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-bottom: 5px;
         background: rgba(0, 0, 0, 0.7);
         border-radius: 25px;
         overflow: hidden; /* Это чтоб блок внутри занимал полностью родительский div  */
@@ -132,7 +138,10 @@
         width: 385px;
         height: 80px;
         border-radius: 25px;
-        margin: 10px;
+        margin-top: 5px;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-bottom: 5px;
         overflow: hidden;
     }
 
@@ -140,6 +149,16 @@
         width: 100%;
         height: 100%;
         display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-micro-cam {
+        margin-top: 5px;
+        margin-right: 10px;
+        margin-left: 10px;
+        margin-bottom: 5px;
+        display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
     }
