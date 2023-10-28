@@ -23,6 +23,7 @@
     color: white;
     font-size: 20px;
     font-family: 'Inter';
+    border: none;
   }
 
   .input::placeholder {
