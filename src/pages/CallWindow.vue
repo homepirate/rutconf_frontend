@@ -6,11 +6,11 @@
       </div>
   
       <div v-if="displayName" class="conf-board-wrapper">
-        <conf-board></conf-board>
+        <conf-board :selectedUser="displayName"></conf-board>
       </div>
   
       <div v-else class="connect-conf-board-wrapper">
-        <connect-conf-board></connect-conf-board>
+        <connect-conf-board :selectedUser="displayName"></connect-conf-board>
       </div>
     </div>
   </template>

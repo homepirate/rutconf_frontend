@@ -5,26 +5,31 @@
       :userList="this.users"
     />
         </div>
-        <div class="chat">
-
-        </div>
+            <chat class="chat" :userList="users" :selectedUser="selectedUser" />
     </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex';
 import UserList from "@/components/UserList.vue";
 import User from "@/components/User.js"
+import Chat from "@/components/Chat.vue";
 
 export default{
+    props: {
+        selectedUser: {
+        type: String,
+        required: true,
+      }
+    },
     data(){
         return {
             users: []
         }
     },
     mounted() {
-    this.getUsers();
+        this.getUsers();
   },
-    components: {UserList},
+    components: {UserList, Chat},
     computed: {
     // ...mapState(['globalArray'])
   },
@@ -73,7 +78,8 @@ export default{
         border-radius: 15px;
         background: rgba(217, 217, 217, 1);
     }
-    .users--list, .chat{
+    .users--list{
+        overflow-y: scroll;
        background: rgba(93, 11, 161, 1);
        display:inline;
         float:left;
@@ -82,4 +88,17 @@ export default{
        border-radius: 15px;
        margin: 8px;
     }
+
+    .users--list::-webkit-scrollbar {
+  width: 1px; /* Устанавливаем ширину ползунка */
+}
+
+.users--list::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Устанавливаем прозрачный цвет ползунка */
+}
+
+.users--list::-webkit-scrollbar-track {
+  background-color: transparent; /* Устанавливаем прозрачный цвет трека */
+}
+
 </style>
