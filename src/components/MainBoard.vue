@@ -10,7 +10,7 @@
             <MicroWin ref="microWin" v-show="isMicroActive" :isMicroActive="isMicroActive" />
         </div>
         <div class="btn-micro-cam">
-            <my-button-mc @click="toggleMicrophone">
+            <my-button-mc style="width:189px" @click="toggleMicrophone">
                 <span style="display: flex; align-items: center;">
                     <IconMicroOFF v-if="!isMicroActive"></IconMicroOFF>
                     <IconMicroON v-else></IconMicroON>
@@ -19,7 +19,7 @@
                     </span>
                 </span>
             </my-button-mc>
-            <my-button-mc @click="toggleCamera">
+            <my-button-mc style="width:189px" @click="toggleCamera">
                 <span style="display: flex; align-items: center;">
                     <IconCamOFF v-if="!isCamActive"></IconCamOFF>
                     <IconCamON v-else></IconCamON>
@@ -156,12 +156,10 @@
     .btn-micro-cam {
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        margin-left:10px;
-        margin-right:10px;
-        margin-top:5px;
-        margin-bottom:5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 385px;
+        justify-content: space-between;
     }
 
 </style>
