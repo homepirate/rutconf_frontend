@@ -12,6 +12,7 @@
 </script>
 
 <style scoped>
+
     .btn {
         border-radius: 15px;
         background: rgba(93, 11, 161, 0.7);
@@ -23,7 +24,7 @@
         border: none;
     }
 
-        .btn:hover {
-            transform: scale(1.025);
-        }
+    .btn:hover {
+        transform: scale(1.025);
+    }
 </style>

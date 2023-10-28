@@ -143,6 +143,9 @@
         margin-left: 10px;
         margin-bottom: 5px;
         overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .cam-video-off {

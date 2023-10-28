@@ -2,7 +2,7 @@
 <template>
     <div class="volume-meter">
         <div class="volume-meter-container">
-            <div class="volume-fill" v-for="(color, index) in volumeColors" :key="index" :style="{ width: `${volume}%`, backgroundColor: color }"></div>
+            <div class="volume-fill" v-for="(color, index) in volumeColors" :key="index" :style="{ width: `${this.calculateWidth()}%`, backgroundColor: color }"></div>
         </div>
     </div>
 </template>
@@ -16,7 +16,7 @@
         data() {
             return {
                 volume: 0, // Начальное значение громкости
-                volumeColors: ['#E0E0E0', '#218907', '#E0E0E0', '#218907', '#E0E0E0', '#218907', '#E0E0E0'], // Цвета для шкалы громкости
+                volumeColors: ['#008604', '#008604', '#008604', '#008604', '#008604', '#008604', '#008604'], // Цвета для шкалы громкости
                 microphone: null,
             };
         },
@@ -49,7 +49,7 @@
                     analyser.getByteFrequencyData(dataArray);
                     const sum = dataArray.reduce((acc, value) => acc + value, 0);
                     const average = sum / dataArray.length;
-                    this.volume = (average / 256) * 50; // Преобразуем в проценты
+                    this.volume = (average / 256) * 80; // Преобразуем в проценты
                     requestAnimationFrame(updateVolume);
                 };
                 updateVolume();
@@ -63,6 +63,15 @@
                     this.microphone = null;
                     this.volume = 0;
                 }
+            },
+            calculateWidth() {
+                if (this.volume === 0) {
+                    return 0;
+                }
+                else if (this.volume <= 5) {
+                    return 1;
+                }
+                else { return this.volume };
             },
         },
     };
