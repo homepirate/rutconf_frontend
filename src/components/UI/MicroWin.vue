@@ -1,9 +1,19 @@
-<template>
-  <div class="microphone-volume">
-    <div class="volume-meter">
-      <div class="volume-fill" v-for="(color, index) in volumeColors" :key="index" :style="{ width: `${volume}%`, backgroundColor: color }"></div>
+<!--<template>
+    <div class="microphone-volume">
+        <div class="volume-meter">
+            <div class="volume-fill" v-for="(color, index) in volumeColors" :key="index" :style="{ width: `${volume}%`, backgroundColor: color }"></div>
+        </div>
     </div>
-  </div>
+</template>-->
+
+<template>
+    <div class="microphone-volume">
+        <div class="volume-meter">
+            <div class="volume-meter-container">
+                <div class="volume-fill" v-for="(color, index) in volumeColors" :key="index" :style="{ width: `${volume}%`, backgroundColor: color }"></div>
+            </div>
+        </div>
+    </div>
 </template>
 
 
@@ -68,6 +78,27 @@
 </script>
 
 
+<!--<style scoped>
+    .microphone-volume {
+        display: flex;
+        align-items: center;
+        margin: 0 auto;
+        background: rgba(0, 0, 0, 0.7);
+    }
+
+    .volume-meter {
+        width: 100%;
+        height: 80px;
+        background: rgb(67, 53, 76);
+        display: flex;
+    }
+
+    .volume-fill {
+        height: 100%;
+        transition: width 0.2s ease-out;
+    }
+</style>-->
+
 <style scoped>
     .microphone-volume {
         display: flex;
@@ -81,6 +112,17 @@
         height: 80px;
         background: rgb(67, 53, 76);
         display: flex;
+        justify-content: center; /* Выравнивание по центру горизонтально */
+        /*align-items: center;*/ /* Выравнивание по центру вертикально */
+    }
+
+    .volume-meter-container {
+        padding: 10px; /* Отступы вокруг volume-fill */
+        width: 100%;
+        height: 100%;
+        background: rgb(67, 53, 76);
+        display: flex;
+        flex-wrap: nowrap; /* Отменяем перенос линий, чтобы они не занимали весь фон */
     }
 
     .volume-fill {

@@ -14,7 +14,7 @@
             <my-button-mc style="margin-left: 5px" @click="toggleMicrophone">
                 <span style="display: flex; align-items: center;">
                     <IconMicroOFF v-if="!isMicroActive"></IconMicroOFF>
-                    <IconMicroON v-else ></IconMicroON>
+                    <IconMicroON v-else></IconMicroON>
                     <span style="margin-left: 5px;">
                         {{ isMicroActive ? "Выключить микрофон" : "Включить микрофон" }}
                     </span>
@@ -31,7 +31,7 @@
             </my-button-mc>
         </div>
         <div class="my-fat-button" style="display: flex; justify-content: center; align-items: center;">
-            <my-fat-button style="margin-top: 10px; width: 390px; height: 173px;" >
+            <my-fat-button style="margin-top: 10px; width: 390px; height: 173px;">
                 <span style=" display: flex; align-items: center;
              display: flex; flex-direction: column; align-items: center;" @click="$router.push('/create-call')">
                     <IconCreateConf></IconCreateConf>
@@ -43,70 +43,70 @@
 </template>
 
 <script>
-import MyButtonMC from './UI/MyButtonMC.vue';
-import MyFatButton from './UI/MyFatButton.vue';
-import IconMicroON from './icons/IconMicroON.vue';
-import IconMicroOFF from './icons/IconMicroOFF.vue';
-import IconCamOFF from './icons/IconCamOFF.vue';
-import IconCamON from './icons/IconCamON.vue';
-import VideoWin from './UI/VideoWin.vue';
-import MicroWin from './UI/MicroWin.vue'
-import IconCreateConf from './icons/IconCreateConf.vue';
+    import MyButtonMC from './UI/MyButtonMC.vue';
+    import MyFatButton from './UI/MyFatButton.vue';
+    import IconMicroON from './icons/IconMicroON.vue';
+    import IconMicroOFF from './icons/IconMicroOFF.vue';
+    import IconCamOFF from './icons/IconCamOFF.vue';
+    import IconCamON from './icons/IconCamON.vue';
+    import VideoWin from './UI/VideoWin.vue';
+    import MicroWin from './UI/MicroWin.vue'
+    import IconCreateConf from './icons/IconCreateConf.vue';
 
-export default {
-    name: 'main-board',
-    components: {
-        MyButtonMC,
-        MyFatButton,
-        IconMicroON,
-        IconMicroOFF,
-        IconCamON,
-        IconCamOFF,
-        VideoWin,
-        MicroWin,
-        IconCreateConf,
-    },
-    data() {
-        return {
-            isMicroActive: false,
-            isCamActive: false
-        };
-    },
-    methods: {
-        toggleMicrophone() {
-            this.isMicroActive = !this.isMicroActive;
-            if (this.isMicroActive){
-                this.$nextTick(() => {
-                    if (this.$refs.microWin) {
-                        this.$refs.microWin.initializeMicrophone();
-                    }
-                });
-            } else {
-                this.$nextTick(() => {
-                    if (this.$refs.microWin) {
-                        this.$refs.microWin.stopMicrophone();
-                    }
-                });
-            }
+    export default {
+        name: 'main-board',
+        components: {
+            MyButtonMC,
+            MyFatButton,
+            IconMicroON,
+            IconMicroOFF,
+            IconCamON,
+            IconCamOFF,
+            VideoWin,
+            MicroWin,
+            IconCreateConf,
         },
-        toggleCamera() {
-            this.isCamActive = !this.isCamActive;
-            if (this.isCamActive) {
-                this.$nextTick(() => {
-                    if (this.$refs.videoWin) {
-                        this.$refs.videoWin.startCamera();
-                    }
-                });
-            } else {
-                this.$nextTick(() => {
-                    if (this.$refs.videoWin) {
-                        this.$refs.videoWin.stopCamera();
-                    }
-                });
-            }
+        data() {
+            return {
+                isMicroActive: false,
+                isCamActive: false
+            };
         },
-    }
-};
+        methods: {
+            toggleMicrophone() {
+                this.isMicroActive = !this.isMicroActive;
+                if (this.isMicroActive) {
+                    this.$nextTick(() => {
+                        if (this.$refs.microWin) {
+                            this.$refs.microWin.initializeMicrophone();
+                        }
+                    });
+                } else {
+                    this.$nextTick(() => {
+                        if (this.$refs.microWin) {
+                            this.$refs.microWin.stopMicrophone();
+                        }
+                    });
+                }
+            },
+            toggleCamera() {
+                this.isCamActive = !this.isCamActive;
+                if (this.isCamActive) {
+                    this.$nextTick(() => {
+                        if (this.$refs.videoWin) {
+                            this.$refs.videoWin.startCamera();
+                        }
+                    });
+                } else {
+                    this.$nextTick(() => {
+                        if (this.$refs.videoWin) {
+                            this.$refs.videoWin.stopCamera();
+                        }
+                    });
+                }
+            },
+        }
+    };
 </script>
 
 <style scoped>
@@ -125,11 +125,10 @@ export default {
         background: rgba(0, 0, 0, 0.7);
         border-radius: 25px;
         overflow: hidden; /* Это чтоб блок внутри занимал полностью родительский div  */
-
-        
     }
-    .micro-window{
-        background:rgba(0, 0, 0, 0.7);
+
+    .micro-window {
+        background: rgba(0, 0, 0, 0.7);
         width: 385px;
         height: 80px;
         border-radius: 25px;
