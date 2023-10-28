@@ -41,22 +41,23 @@
 
 
 <style scoped>
-.logo-div {
-  display: flex;
-  align-items: flex-start;
-}
-  h1{
-    size: 25px;
-    font-family: 'Inter'; 
-    font-style: italic;
- }
+    .logo-div {
+        display: flex;
+        align-items: flex-start;
+    }
 
-.connect-conf-board-wrapper {
-  position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 40%;
-    left: 38%;
-}
+    h1 {
+        size: 25px;
+        font-family: 'Inter';
+        font-style: italic;
+    }
+
+    .connect-conf-board-wrapper {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 40%;
+        left: 38%;
+    }
 </style>
