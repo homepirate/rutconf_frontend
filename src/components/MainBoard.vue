@@ -1,4 +1,3 @@
-
 <template>
     <div class="main-rectangle">
         <div class="webcam-window">
@@ -11,20 +10,20 @@
             <MicroWin ref="microWin" v-show="isMicroActive" :isMicroActive="isMicroActive" />
         </div>
         <div class="btn-micro-cam">
-            <my-button-mc style="margin-left: 5px" @click="toggleMicrophone">
+            <my-button-mc @click="toggleMicrophone">
                 <span style="display: flex; align-items: center;">
                     <IconMicroOFF v-if="!isMicroActive"></IconMicroOFF>
                     <IconMicroON v-else></IconMicroON>
-                    <span style="margin-left: 5px;">
+                    <span style="display: flex; align-items: center">
                         {{ isMicroActive ? "Выключить микрофон" : "Включить микрофон" }}
                     </span>
                 </span>
             </my-button-mc>
-            <my-button-mc style="margin-right: 5px" @click="toggleCamera">
+            <my-button-mc @click="toggleCamera">
                 <span style="display: flex; align-items: center;">
                     <IconCamOFF v-if="!isCamActive"></IconCamOFF>
                     <IconCamON v-else></IconCamON>
-                    <span style="margin-left: 5px;">
+                    <span style="display: flex; align-items: center">
                         {{ isCamActive ? "Выключить камеру" : "Включить камеру" }}
                     </span>
                 </span>
@@ -110,6 +109,7 @@
 </script>
 
 <style scoped>
+
     .main-rectangle {
         width: 401px;
         height: 606px;
@@ -152,14 +152,16 @@
         align-items: center;
         justify-content: center;
     }
+
     .btn-micro-cam {
-        margin-top: 5px;
-        margin-right: 10px;
-        margin-left: 10px;
-        margin-bottom: 5px;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        margin-left:10px;
+        margin-right:10px;
+        margin-top:5px;
+        margin-bottom:5px;
     }
+
 </style>

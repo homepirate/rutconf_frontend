@@ -1,17 +1,8 @@
-<!--<template>
-    <div class="microphone-volume">
-        <div class="volume-meter">
-            <div class="volume-fill" v-for="(color, index) in volumeColors" :key="index" :style="{ width: `${volume}%`, backgroundColor: color }"></div>
-        </div>
-    </div>
-</template>-->
 
 <template>
-    <div class="microphone-volume">
-        <div class="volume-meter">
-            <div class="volume-meter-container">
-                <div class="volume-fill" v-for="(color, index) in volumeColors" :key="index" :style="{ width: `${volume}%`, backgroundColor: color }"></div>
-            </div>
+    <div class="volume-meter">
+        <div class="volume-meter-container">
+            <div class="volume-fill" v-for="(color, index) in volumeColors" :key="index" :style="{ width: `${volume}%`, backgroundColor: color }"></div>
         </div>
     </div>
 </template>
@@ -25,7 +16,7 @@
         data() {
             return {
                 volume: 0, // Начальное значение громкости
-                volumeColors: ['#c4c4c4', '#c4c4c4', '#c4c4c4', '#c4c4c4', '#c4c4c4', '#c4c4c4', '#c4c4c4'], // Цвета для шкалы громкости
+                volumeColors: ['#E0E0E0', '#218907', '#E0E0E0', '#218907', '#E0E0E0', '#218907', '#E0E0E0'], // Цвета для шкалы громкости
                 microphone: null,
             };
         },
@@ -58,7 +49,7 @@
                     analyser.getByteFrequencyData(dataArray);
                     const sum = dataArray.reduce((acc, value) => acc + value, 0);
                     const average = sum / dataArray.length;
-                    this.volume = (average / 256) * 100; // Преобразуем в проценты
+                    this.volume = (average / 256) * 50; // Преобразуем в проценты
                     requestAnimationFrame(updateVolume);
                 };
                 updateVolume();
@@ -77,56 +68,33 @@
     };
 </script>
 
-
-<!--<style scoped>
-    .microphone-volume {
-        display: flex;
-        align-items: center;
-        margin: 0 auto;
-        background: rgba(0, 0, 0, 0.7);
-    }
-
-    .volume-meter {
-        width: 100%;
-        height: 80px;
-        background: rgb(67, 53, 76);
-        display: flex;
-    }
-
-    .volume-fill {
-        height: 100%;
-        transition: width 0.2s ease-out;
-    }
-</style>-->
-
 <style scoped>
-    .microphone-volume {
-        display: flex;
-        align-items: center;
-        margin: 0 auto;
-        background: rgba(0, 0, 0, 0.7);
-    }
 
     .volume-meter {
         width: 100%;
-        height: 80px;
+        height: 100%;
         background: rgb(67, 53, 76);
         display: flex;
-        justify-content: center; /* Выравнивание по центру горизонтально */
-        /*align-items: center;*/ /* Выравнивание по центру вертикально */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .volume-meter-container {
-        padding: 10px; /* Отступы вокруг volume-fill */
         width: 100%;
-        height: 100%;
+        height: 50%;
         background: rgb(67, 53, 76);
         display: flex;
-        flex-wrap: nowrap; /* Отменяем перенос линий, чтобы они не занимали весь фон */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
     }
 
     .volume-fill {
         height: 100%;
         transition: width 0.2s ease-out;
+        border-radius: 25px;
     }
+
 </style>
