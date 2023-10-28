@@ -20,7 +20,8 @@
     vertical-align: middle;
     font-size: 18px;
     color: white;
-    transition: transform 0.2s ease-in-out; 
+    transition: transform 0.2s ease-in-out;
+    border: none;
   }
   .btn:hover{
     transform: scale(1.025);
