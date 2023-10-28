@@ -2,12 +2,11 @@
     <div class="main-rectangle">
         <div class="back-and-input-name">
             <button class="btn-back" @click="$router.push('/')"></button>
-            <my-input v-model="displayName" style="width: 358px; height: 45px; margin-right: 10px; margin-left: 3px;" placeholder="Введите отображаемое имя"/>
+            <my-input v-model="displayName" style="width: 351px; height: 45px; margin: 5px;" placeholder="Введите отображаемое имя"/>
         </div>
-        <my-input class="input-url-for-conf" v-model="urlValue" style="width: 400px; height: 49px; margin: 5px; margin-left: 11px" readonly/>
         <div class="my-fat-button">
-            <my-fat-button style="margin-top: 5px; width: 403px; height: 49px;" @click="createAndConnect">
-                    <span style="margin-top: 5px; font-size: 20px;">Создать и подключиться</span>
+            <my-fat-button style="margin-top: 5px; width: 403px; height: 49px;" @click="Connect">
+                    <span style="margin-top: 5px; font-size: 20px;">Подключиться</span>
             </my-fat-button>
         </div>
     </div>
@@ -26,19 +25,8 @@ export default {
     name: 'createconf-board',
     components: {},
     async mounted() {
-        this.urlValue = await this.fetchDataFromBackend();;
     },
     methods: {
-        async fetchDataFromBackend() {
-            try {
-                const response = await fetch('https://api.example.com/data');
-                const data = await response.json();
-                return data.value;
-            } catch (error) {
-                console.error(error);
-                return "NONE";
-            }
-        },
 
     async sendDataToBackend() {
       try {
@@ -53,7 +41,7 @@ export default {
           },
           body: JSON.stringify({
             displayName: dspName,
-            role: "creator",
+            role: "user",
           }),
         });
 
@@ -64,16 +52,8 @@ export default {
       }
     },
 
-        async createAndConnect() {
-      const urlValue = document.querySelector('.input-url-for-conf').value;
-      console.log(urlValue)
+        async Connect() {
       await this.sendDataToBackend();
-
-      if (urlValue) {
-        this.conferenceUrl = urlValue;
-        // Перейти на страницу с конференцией
-        this.$router.push(`/call/${urlValue}`);
-      }
     },
     },
 };
@@ -82,7 +62,7 @@ export default {
 <style scoped>
    .main-rectangle {
         width: 423px;
-        height: 186px;
+        height: 120px;
         border-radius: 25px;
         background: rgba(158, 0, 255, 0.3);
     }
