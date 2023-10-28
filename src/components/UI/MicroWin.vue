@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       volume: 0, // Начальное значение громкости
-      volumeColors: ['#00ff00', '#4dff00', '#99ff00', '#e5ff00', '#ffbf00', '#ff8000', '#ff4000'], // Цвета для шкалы громкости
+        volumeColors: ['#c4c4c4', '#c4c4c4', '#c4c4c4', '#c4c4c4', '#c4c4c4', '#c4c4c4', '#c4c4c4'], // Цвета для шкалы громкости
       microphone: null,
     };
   },
@@ -77,7 +77,7 @@ export default {
 .volume-meter {
   width: 100%;
   height: 80px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgb(67, 53, 76);
   display: flex;
 }
 
