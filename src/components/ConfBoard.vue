@@ -38,7 +38,7 @@ export default{
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ currentLink }) // Отправляем параметр currentLink в формате JSON
+        body: JSON.stringify({url: currentLink }) // Отправляем параметр currentLink в формате JSON
         });
         const userDataList = await response.json();
 
@@ -75,6 +75,8 @@ export default{
     }
     .users--list, .chat{
        background: rgba(93, 11, 161, 1);
+       display:inline;
+        float:left;
        width: 327px;
        height: 437px;
        border-radius: 15px;
