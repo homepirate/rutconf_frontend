@@ -15,11 +15,20 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
+import User from "@/components/User.js"
 export default {
+  props: {
+    displayName: {
+      type: String,
+      required: true
+    }
+  },
     data() {
     return {
       displayName: '',
       urlValue: '',
+      isConferenceCreator: true,
     }
 },
 
@@ -28,7 +37,17 @@ export default {
     async mounted() {
         this.urlValue = await this.fetchDataFromBackend();;
     },
-    methods: {
+    methods: { 
+       ////////////////////////////// TEST //////////////////////////
+    //    ...mapMutations(['addToGlobalArray', 'removeFromGlobalArray']),
+    // addItem() {
+    //   this.addToGlobalArray(new User(this.displayName)); // Добавление элемента в глобальный массив
+    // },
+    // removeItem(index) {
+    //   this.removeFromGlobalArray(index); // Удаление элемента из глобального массива
+    // },
+// ////////////////////////////////////////////////////
+      ...mapMutations(['setDisplayName']),
         async fetchDataFromBackend() {
             try {
                 const response = await fetch('https://api.example.com/data');
@@ -65,14 +84,21 @@ export default {
     },
 
         async createAndConnect() {
+          if (this.displayName.trim() === ""){
+            return
+          }
       const urlValue = document.querySelector('.input-url-for-conf').value;
       console.log(urlValue)
       await this.sendDataToBackend();
 
       if (urlValue) {
-        this.conferenceUrl = urlValue;
+        // this.conferenceUrl = urlValue;
         // Перейти на страницу с конференцией
         this.$router.push(`/call/${urlValue}`);
+        this.setDisplayName(this.displayName);
+        //////// TEST////////
+        // this.addItem(); 
+        /////////////
       }
     },
     },
