@@ -32,32 +32,32 @@
             }
         },
 
-        name: 'createconf-board',
-        components: {},
-        async mounted() {
-            this.urlValue = await this.fetchDataFromBackend();;
+    name: 'createconf-board',
+    components: {},
+    async mounted() {
+        this.urlValue = await this.fetchDataFromBackend();
+    },
+    methods: { 
+       ////////////////////////////// TEST //////////////////////////
+    //    ...mapMutations(['addToGlobalArray', 'removeFromGlobalArray']),
+    // addItem() {
+    //   this.addToGlobalArray(new User(this.displayName)); // Добавление элемента в глобальный массив
+    // },
+    // removeItem(index) {
+    //   this.removeFromGlobalArray(index); // Удаление элемента из глобального массива
+    // },
+// ////////////////////////////////////////////////////
+      ...mapMutations(['setDisplayName']),
+        async fetchDataFromBackend() {
+            try {
+                const response = await fetch('https://api.example.com/data');
+                const data = await response.json();
+                return data.value;
+            } catch (error) {
+                console.error(error);
+                return "NONE";
+            }
         },
-        methods: {
-            ////////////////////////////// TEST //////////////////////////
-            //    ...mapMutations(['addToGlobalArray', 'removeFromGlobalArray']),
-            // addItem() {
-            //   this.addToGlobalArray(new User(this.displayName)); // Добавление элемента в глобальный массив
-            // },
-            // removeItem(index) {
-            //   this.removeFromGlobalArray(index); // Удаление элемента из глобального массива
-            // },
-            // ////////////////////////////////////////////////////
-            ...mapMutations(['setDisplayName']),
-            async fetchDataFromBackend() {
-                try {
-                    const response = await fetch('https://api.example.com/data');
-                    const data = await response.json();
-                    return data.value;
-                } catch (error) {
-                    console.error(error);
-                    return "NONE";
-                }
-            },
 
             async sendDataToBackend() {
                 try {
