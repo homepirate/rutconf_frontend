@@ -49,7 +49,7 @@
       .then((data) => {
         console.log(data); // Обработка полученных данных
         if (data['status'] === false){
-          this.$router.push("/")
+          this.$router.push("/conf-not-found")
         }
       })
       .catch((error) => {
