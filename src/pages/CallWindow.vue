@@ -31,7 +31,31 @@
     return {
     };
   },
+  mounted() {
+    this.sendRequest();
+  },
   methods: {
+    sendRequest() {
+      const currentLink = window.location.href.split("/").at(-1); // Получение текущей ссылки
+      console.log("1111111111111111", currentLink)
+      fetch('http://localhost:8000/check-link', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({url: currentLink }), // Преобразование данных в формат JSON и передача их в теле запроса
+    })
+      .then((response) => response.json()) // Преобразование ответа сервера в JSON
+      .then((data) => {
+        console.log(data); // Обработка полученных данных
+        if (data['status'] === false){
+          this.$router.push("/")
+        }
+      })
+      .catch((error) => {
+        console.error(error); // Обработка ошибок, если они возникнут при запросе
+      });
+    },
   },
   computed: {
     ...mapState(['displayName']), // Получаем значение displayName из состояния Vuex

@@ -35,7 +35,7 @@ export default {
     name: 'createconf-board',
     components: {},
     async mounted() {
-        this.urlValue = await this.fetchDataFromBackend();;
+        this.urlValue = await this.fetchDataFromBackend();
     },
     methods: { 
        ////////////////////////////// TEST //////////////////////////
