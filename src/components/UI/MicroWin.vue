@@ -16,14 +16,14 @@
         data() {
             return {
                 volume: 0, // Начальное значение громкости
-                volumeColors: ['#008604', '#008604', '#008604', '#008604', '#008604', '#008604', '#008604'], // Цвета для шкалы громкости
+                volumeColors: ['#AD7AEF', '#AD7AEF', '#AD7AEF', '#AD7AEF', '#AD7AEF', '#AD7AEF', '#AD7AEF'], // Цвета для шкалы громкости
                 microphone: null,
             };
         },
         methods: {
             initializeMicrophone() {
                 if (this.isMicroActive) {
-                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 44100 });
                     const analyser = audioContext.createAnalyser();
 
                     navigator.mediaDevices
@@ -33,7 +33,7 @@
                             this.microphone.connect(analyser);
                             analyser.connect(audioContext.destination);
 
-                            analyser.fftSize = 256;
+                            analyser.fftSize = 2048;
                             const bufferLength = analyser.frequencyBinCount;
                             const dataArray = new Uint8Array(bufferLength);
 
@@ -49,7 +49,7 @@
                     analyser.getByteFrequencyData(dataArray);
                     const sum = dataArray.reduce((acc, value) => acc + value, 0);
                     const average = sum / dataArray.length;
-                    this.volume = (average / 256) * 80; // Преобразуем в проценты
+                    this.volume = (average / 256) * 100; // Преобразуем в проценты
                     requestAnimationFrame(updateVolume);
                 };
                 updateVolume();
@@ -70,6 +70,9 @@
                 }
                 else if (this.volume <= 5) {
                     return 1;
+                }
+                else if (this.volume >= 80) {
+                    return 50;
                 }
                 else { return this.volume };
             },
