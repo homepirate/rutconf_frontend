@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="conf-creation-page">
         <div class="logo-div">
             <icon-logo />
             <h1>RUT CONF</h1>
@@ -29,17 +29,13 @@
     }
 
     h1 {
-        size: 25px;
         font-family: 'Inter';
         font-style: italic;
     }
 
     .create-conf-board-wrapper {
-        position: absolute;
         display: flex;
         justify-content: center;
         align-items: center;
-        top: 40%;
-        left: 38%;
     }
 </style>
