@@ -7,12 +7,36 @@
         </div>
             <chat class="chat" :userList="users" :selectedUser="selectedUser" />
     </div>
+    <div class="btn-micro-cam">
+            <my-button-mc style="width:189px" @click="toggleMicrophone">
+                <span style="display: flex; align-items: center;">
+                    <IconMicroOFF v-if="!isMicroActive"></IconMicroOFF>
+                    <IconMicroON v-else></IconMicroON>
+                    <span style="display: flex; align-items: center">
+                        {{ isMicroActive ? "Выключить микрофон" : "Включить микрофон" }}
+                    </span>
+                </span>
+            </my-button-mc>
+            <my-button-mc style="width:189px" @click="toggleCamera">
+                <span style="display: flex; align-items: center;">
+                    <IconCamOFF v-if="!isCamActive"></IconCamOFF>
+                    <IconCamON v-else></IconCamON>
+                    <span style="display: flex; align-items: center">
+                        {{ isCamActive ? "Выключить камеру" : "Включить камеру" }}
+                    </span>
+                </span>
+            </my-button-mc>
+        </div>
 </template>
 <script>
 import { mapState, mapMutations } from 'vuex';
 import UserList from "@/components/UserList.vue";
 import User from "@/components/User.js"
 import Chat from "@/components/Chat.vue";
+import IconMicroON from './icons/IconMicroON.vue';
+import IconMicroOFF from './icons/IconMicroOFF.vue';
+import IconCamOFF from './icons/IconCamOFF.vue';
+import IconCamON from './icons/IconCamON.vue';
 
 export default{
     props: {
@@ -23,13 +47,22 @@ export default{
     },
     data(){
         return {
-            users: []
+            users: [],
+            isMicroActive: false,
+            isCamActive: false
         }
     },
     mounted() {
         this.getUsers();
   },
-    components: {UserList, Chat},
+    components: {
+      UserList, 
+      Chat,
+      IconMicroON,
+      IconMicroOFF,
+      IconCamON,
+      IconCamOFF,
+    },
     computed: {
     // ...mapState(['globalArray'])
   },
@@ -56,7 +89,39 @@ export default{
       } catch (error) {
         console.error('Ошибка при получении списка пользователей:', error);
       }
-    }
+    },
+    toggleMicrophone() {
+                this.isMicroActive = !this.isMicroActive;
+                // if (this.isMicroActive) {
+                //     this.$nextTick(() => {
+                //         if (this.$refs.microWin) {
+                //             this.$refs.microWin.initializeMicrophone();
+                //         }
+                //     });
+                // } else {
+                //     this.$nextTick(() => {
+                //         if (this.$refs.microWin) {
+                //             this.$refs.microWin.stopMicrophone();
+                //         }
+                //     });
+                // }
+            },
+            toggleCamera() {
+                this.isCamActive = !this.isCamActive;
+                // if (this.isCamActive) {
+                //     this.$nextTick(() => {
+                //         if (this.$refs.videoWin) {
+                //             this.$refs.videoWin.startCamera();
+                //         }
+                //     });
+                // } else {
+                //     this.$nextTick(() => {
+                //         if (this.$refs.videoWin) {
+                //             this.$refs.videoWin.stopCamera();
+                //         }
+                //     });
+                // }
+            },
 
     // Это здесь только для теста 
 //     ...mapMutations(['addToGlobalArray', 'removeFromGlobalArray']),
@@ -88,6 +153,15 @@ export default{
        border-radius: 15px;
        margin: 8px;
     }
+    .btn-micro-cam {
+      left: 40%;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: flex-end;
+      position: fixed;
+      bottom: 20px;
+      width: 400px;
+}
 
     .users--list::-webkit-scrollbar {
   width: 1px; /* Устанавливаем ширину ползунка */

@@ -43,6 +43,10 @@
 
             // const selectedUser = this.userList.find(user => user.name === this.selectedUser);
 
+
+            if (this.messageInput.trim() == '') return;
+            
+ 
             const message = {
                 username: this.selectedUser, // Имя выбранного пользователя
                 content: this.messageInput // Введенное сообщение
@@ -50,7 +54,8 @@
 
             this.messages.unshift(message);
             this.messageInput = '';
-        }
+  
+      }
   },
 
   };
