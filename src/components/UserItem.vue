@@ -2,19 +2,19 @@
     <div class="user">
         <span>{{ user.name }}</span>
     </div>
-  </template>
-  
-  <script>
-  import User from "@/components/User.js";
-  export default {
-    props: {
-      user: {
-        type: User,
-        required: true,
-      }
+</template>
+
+<script>
+    import User from "@/components/User.js";
+    export default {
+        props: {
+            user: {
+                type: User,
+                required: true,
+            }
+        }
     }
-  }
-  </script>
+</script>
 
 <style scoped>
     .user {
@@ -24,6 +24,7 @@
         border-radius: 15px;
         margin: 5px;
     }
+
     span {
         font-size: 20px;
         font-family: 'Inter';

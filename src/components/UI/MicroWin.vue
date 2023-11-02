@@ -108,5 +108,4 @@
         transition: width 0.2s ease-out;
         border-radius: 25px;
     }
-
 </style>

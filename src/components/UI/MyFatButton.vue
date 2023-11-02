@@ -24,7 +24,7 @@
         border: none;
     }
 
-    .btn:hover {
-        transform: scale(1.025);
-    }
+        .btn:hover {
+            transform: scale(1.025);
+        }
 </style>

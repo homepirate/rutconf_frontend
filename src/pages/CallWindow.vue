@@ -1,42 +1,42 @@
 <template>
     <div>
-      <div v-if="!displayName" class="logo-div">
-        <icon-logo />
-        <h1>RUT CONF</h1>
-      </div>
-  
-      <div v-if="displayName" class="conf-board-wrapper">
-        <conf-board :selectedUser="displayName"></conf-board>
-      </div>
-  
-      <div v-else class="connect-conf-board-wrapper">
-        <connect-conf-board :selectedUser="displayName"></connect-conf-board>
-      </div>
+        <div v-if="!displayName" class="logo-div">
+            <icon-logo />
+            <h1>RUT CONF</h1>
+        </div>
+
+        <div v-if="displayName" class="conf-board-wrapper">
+            <conf-board :selectedUser="displayName"></conf-board>
+        </div>
+
+        <div v-else class="connect-conf-board-wrapper">
+            <connect-conf-board :selectedUser="displayName"></connect-conf-board>
+        </div>
     </div>
-  </template>
+</template>
 
 
 <script>
     import { mapState } from 'vuex';
-  import ConnectConfBoard from "@/components/ConnectConfBoard.vue";
-  import ConfBoard from "@/components/ConfBoard.vue"
-  import IconLogo from "@/components/icons/IconLogo.vue";
-  export default {
-    components : {
-        ConnectConfBoard,
-      IconLogo,
-      ConfBoard,
-    },
-    data() {
-    return {
-    };
-  },
-  methods: {
-  },
-  computed: {
-    ...mapState(['displayName']), // Получаем значение displayName из состояния Vuex
-  },
-  }
+    import ConnectConfBoard from "@/components/ConnectConfBoard.vue";
+    import ConfBoard from "@/components/ConfBoard.vue"
+    import IconLogo from "@/components/icons/IconLogo.vue";
+    export default {
+        components: {
+            ConnectConfBoard,
+            IconLogo,
+            ConfBoard,
+        },
+        data() {
+            return {
+            };
+        },
+        methods: {
+        },
+        computed: {
+            ...mapState(['displayName']), // Получаем значение displayName из состояния Vuex
+        },
+    }
 </script>
 
 

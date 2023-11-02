@@ -14,34 +14,34 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
-import User from "@/components/User.js"
-export default {
-    data() {
-    return {
-      displayName: '',
-    }
-},
+    import { mapMutations } from 'vuex';
+    import User from "@/components/User.js"
+    export default {
+        data() {
+            return {
+                displayName: '',
+            }
+        },
 
-    name: 'connect-conf-board',
-    components: {},
-    async mounted() {
-    },
-    methods: {
-      ////////////////////////////// TEST //////////////////////////
-    //   ...mapMutations(['addToGlobalArray', 'removeFromGlobalArray']),
-    // addItem() {
-    //   this.addToGlobalArray(new User(this.displayName)); // Добавление элемента в глобальный массив
-    // },
-    // removeItem(index) {
-    //   this.removeFromGlobalArray(index); // Удаление элемента из глобального массива
-    // },
-// ////////////////////////////////////////////////////
-      ...mapMutations(['setDisplayName']),
-    async sendDataToBackend() {
-      try {
-        console.log(this.displayName)
-        const dspName = this.displayName;
+        name: 'connect-conf-board',
+        components: {},
+        async mounted() {
+        },
+        methods: {
+            ////////////////////////////// TEST //////////////////////////
+            //   ...mapMutations(['addToGlobalArray', 'removeFromGlobalArray']),
+            // addItem() {
+            //   this.addToGlobalArray(new User(this.displayName)); // Добавление элемента в глобальный массив
+            // },
+            // removeItem(index) {
+            //   this.removeFromGlobalArray(index); // Удаление элемента из глобального массива
+            // },
+            // ////////////////////////////////////////////////////
+            ...mapMutations(['setDisplayName']),
+            async sendDataToBackend() {
+                try {
+                    console.log(this.displayName)
+                    const dspName = this.displayName;
 
                     // Отправить displayName на бекенд
                     const response = await fetch('https://api.example.com/data', {
@@ -62,18 +62,18 @@ export default {
                 }
             },
 
-        async Connect() {
-          if (this.displayName.trim() === ""){
-            return
-          }
-      await this.sendDataToBackend(); 
-      this.setDisplayName(this.displayName); 
-      //////// TEST////////
-      // this.addItem(); 
-        /////////////
-    },
-    },
-};
+            async Connect() {
+                if (this.displayName.trim() === "") {
+                    return
+                }
+                await this.sendDataToBackend();
+                this.setDisplayName(this.displayName);
+                //////// TEST////////
+                // this.addItem();
+                /////////////
+            },
+        },
+    };
 </script>
 
 <style scoped>

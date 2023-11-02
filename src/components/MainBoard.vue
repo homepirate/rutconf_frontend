@@ -164,5 +164,4 @@
         width: 385px;
         justify-content: space-between;
     }
-
 </style>
