@@ -22,9 +22,12 @@
         width: 307px;
         height: 35px;
         border-radius: 15px;
+        margin: 5px;
     }
     span {
         font-size: 20px;
         font-family: 'Inter';
+        color: white;
+        margin: 10px;
     }
 </style>
