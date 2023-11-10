@@ -8,9 +8,9 @@
         <div class="input-url-for-conf-container">
             <!-- <div v-if="isCopySuccess" class="copy-success"> Ссылка скопирована!</div> Всплывающая надпись -->
 
-            <my-input class="input-url-for-conf"  id="urlInput" v-model="urlValue"
-                style="width: 400px; height: 49px; margin: 5px; margin-left: 11px" readonly/>
-                <!-- <button class="copy-btn" @click="copyToClipboard"></button> -->
+            <my-input class="input-url-for-conf" id="urlInput" v-model="urlValue"
+                style="width: 400px; height: 49px; margin: 5px; margin-left: 11px" readonly />
+            <!-- <button class="copy-btn" @click="copyToClipboard"></button> -->
             <IconCopyLink class="icon-copy-link" @click="copyLink" />
         </div>
         <div class="my-fat-button">
@@ -53,21 +53,21 @@ export default {
     },
     methods: {
         copyLink() {
-            const inputElement =  document.getElementById('urlInput');
-        if (inputElement) {
-            // inputElement.focus();
-            inputElement.select();
+            const inputElement = document.getElementById('urlInput');
+            if (inputElement) {
+                // inputElement.focus();
+                inputElement.select();
 
-            window.navigator.clipboard.writeText(inputElement.value)
-            this.isCopySuccess = true; // Устанавливаем флаг успешного копирования
-        setTimeout(() => {
-            this.isCopySuccess = false; // Сбрасываем флаг после определенного времени (например, через 2 секунды)
-        }, 1000);
+                window.navigator.clipboard.writeText(inputElement.value)
+                this.isCopySuccess = true; // Устанавливаем флаг успешного копирования
+                setTimeout(() => {
+                    this.isCopySuccess = false; // Сбрасываем флаг после определенного времени (например, через 2 секунды)
+                }, 1000);
 
-            window.getSelection().removeAllRanges();
-        }
-    },
-        
+                window.getSelection().removeAllRanges();
+            }
+        },
+
 
 
         ////////////////////////////// TEST //////////////////////////
@@ -184,9 +184,9 @@ export default {
     right: 12px;
     top: 3px;
     cursor: pointer;
-    }
-.icon-copy-link:hover {
-        transform: scale(1.025);
 }
 
+.icon-copy-link:hover {
+    transform: scale(1.025);
+}
 </style>

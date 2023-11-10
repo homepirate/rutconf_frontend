@@ -11,31 +11,31 @@
 </template>
 
 <script>
-    import CreateConfBoard from "@/components/CreateConfBoard.vue"
-    import IconLogo from "@/components/icons/IconLogo.vue";
-    export default {
-        components: {
-            CreateConfBoard,
-            IconLogo,
-        }
-
+import CreateConfBoard from "@/components/CreateConfBoard.vue"
+import IconLogo from "@/components/icons/IconLogo.vue";
+export default {
+    components: {
+        CreateConfBoard,
+        IconLogo,
     }
+
+}
 </script>
 
 <style scoped>
-    .logo-div {
-        display: flex;
-        align-items: flex-start;
-    }
+.logo-div {
+    display: flex;
+    align-items: flex-start;
+}
 
-    h1 {
-        font-family: 'Inter';
-        font-style: italic;
-    }
+h1 {
+    font-family: 'Inter';
+    font-style: italic;
+}
 
-    .create-conf-board-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.create-conf-board-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>
