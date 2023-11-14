@@ -176,4 +176,5 @@ export default {
 .users--list::-webkit-scrollbar-track {
     background-color: transparent;
     /* Устанавливаем прозрачный цвет трека */
-}</style>
+}
+</style>
