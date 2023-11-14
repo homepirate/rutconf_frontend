@@ -4,11 +4,4 @@ import MicroWin from "@/components/UI/MicroWin.vue";
 import MyFatButton from "@/components/UI/MyFatButton.vue";
 import MyInput from "@/components/UI/MyInput.vue";
 
-
-export default [
-    MyButtonMC,
-    VideoWin,
-    MicroWin,
-    MyFatButton,
-    MyInput,
-];
+export default [MyButtonMC, VideoWin, MicroWin, MyFatButton, MyInput];

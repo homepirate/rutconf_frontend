@@ -1,10 +1,9 @@
-import Vuex from 'vuex';
-
+import Vuex from "vuex";
 
 export default new Vuex.Store({
   state: {
-    displayName: '', 
-    // globalArray: [], // TEST 
+    displayName: "",
+    // globalArray: [], // TEST
   },
   mutations: {
     setDisplayName(state, value) {
