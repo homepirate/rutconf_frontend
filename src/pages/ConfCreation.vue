@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="conf-creation-page">
         <div class="logo-div">
             <icon-logo />
             <h1>RUT CONF</h1>
@@ -11,35 +11,31 @@
 </template>
 
 <script>
-    import CreateConfBoard from "@/components/CreateConfBoard.vue"
-    import IconLogo from "@/components/icons/IconLogo.vue";
-    export default {
-        components: {
-            CreateConfBoard,
-            IconLogo,
-        }
-
+import CreateConfBoard from "@/components/CreateConfBoard.vue"
+import IconLogo from "@/components/icons/IconLogo.vue";
+export default {
+    components: {
+        CreateConfBoard,
+        IconLogo,
     }
+
+}
 </script>
 
 <style scoped>
-    .logo-div {
-        display: flex;
-        align-items: flex-start;
-    }
+.logo-div {
+    display: flex;
+    align-items: flex-start;
+}
 
-    h1 {
-        size: 25px;
-        font-family: 'Inter';
-        font-style: italic;
-    }
+h1 {
+    font-family: 'Inter';
+    font-style: italic;
+}
 
-    .create-conf-board-wrapper {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        top: 40%;
-        left: 38%;
-    }
+.create-conf-board-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>

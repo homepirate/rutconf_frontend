@@ -1,5 +1,5 @@
-<template>
-    <div>
+﻿<template>
+    <div class="main-page">
         <div class="logo-div">
             <icon-logo />
             <h1>RUT CONF</h1>
@@ -11,32 +11,30 @@
 </template>
 
 <script>
-    import MainBoard from "@/components/MainBoard.vue"
-    import IconLogo from "@/components/icons/IconLogo.vue";
-    export default {
-        components: {
-            MainBoard,
-            IconLogo,
-        }
-
+import MainBoard from "@/components/MainBoard.vue"
+import IconLogo from "@/components/icons/IconLogo.vue";
+export default {
+    components: {
+        MainBoard,
+        IconLogo,
     }
+}
 </script>
 
 <style scoped>
-    .logo-div {
-        display: flex;
-        align-items: flex-start;
-    }
+.logo-div {
+    display: flex;
+    align-items: flex-start;
+}
 
-    h1 {
-        size: 25px;
-        font-family: 'Inter';
-        font-style: italic;
-    }
+h1 {
+    font-family: 'Inter';
+    font-style: italic;
+}
 
-    .main-board-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.main-board-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>
