@@ -11,6 +11,7 @@
             </my-fat-button>
         </div>
     </div>
+
 </template>
 
 <script>

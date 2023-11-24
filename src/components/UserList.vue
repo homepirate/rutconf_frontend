@@ -1,6 +1,6 @@
 <template>
     <transition-group name="user-list">
-        <user-item v-for="user in userList" :user="user" :key="user.name" />
+        <user-item v-for="user in userList" :streamManager="user" :key="user" />
     </transition-group>
 </template>
 
@@ -15,5 +15,15 @@ export default {
             required: true,
         },
     },
+    // data() {
+    //     return {
+    //         streamList: [],
+    //     },
+    // },
+    // mounted(){
+    //     for (user in this.userList){
+
+    //     }
+    // }
 };
 </script>

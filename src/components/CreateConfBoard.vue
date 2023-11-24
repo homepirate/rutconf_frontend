@@ -85,7 +85,7 @@ export default {
                 return data.value;
             } catch (error) {
                 console.error(error);
-                return "NONE";
+                return "None";
             }
         },
 

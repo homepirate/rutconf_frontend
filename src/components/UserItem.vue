@@ -1,6 +1,6 @@
 <template>
     <div class="user">
-        <span>{{ user.name }}</span>
+        <span>{{ clientData }}</span>
     </div>
 </template>
 
@@ -8,11 +8,22 @@
 import User from "@/components/User.js";
 export default {
     props: {
-        user: {
-            type: User,
-            required: true,
-        }
-    }
+        streamManager: Object,
+    },
+    computed: {
+		clientData () {
+			const { clientData } = this.getConnectionData();
+			return clientData;
+		},
+	},
+
+	methods: {
+		getConnectionData () {
+            console.log("!!!!!!!!!!!!", this.streamManager);
+			const { connection } = this.streamManager.stream;
+			return JSON.parse(connection.data);
+		},
+	},
 }
 </script>
 

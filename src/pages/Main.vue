@@ -17,8 +17,8 @@ export default {
     components: {
         MainBoard,
         IconLogo,
-    }
-}
+    },
+} 
 </script>
 
 <style scoped>
