@@ -3,7 +3,9 @@
         <div class="users--list">
             <user-list :userList="this.subscribers" />
         </div>
-        <chat class="chat" :userList="users" :selectedUser="selectedUser" />
+        <chat class="chat" ref="chat"
+				@message="sendMessage"
+				:subscribers="subscribers"/>
     </div>
     <div id="video-container" class="col-md-6">
         <user-video :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" />
@@ -82,6 +84,9 @@ export default {
         console.log("--------------", this.subscribers)
         this.getUsers();
     },
+    created() {
+    console.log('ConfBoard created');
+  },
     components: {
         UserList,
         Chat,
@@ -96,6 +101,36 @@ export default {
     },
 
     methods: {
+      sendMessage({ content, to }) {
+      console.log("SEND MESSAGE", content, to)
+			let now = new Date();
+			let current = now.toLocaleTimeString([], {
+				hour: '2-digit',
+				minute: '2-digit',
+				hour12: false, // true인 경우 오후 10:25와 같이 나타냄.
+			});
+
+			let messageData = {
+				content: content,
+				sender: this.myUserName,
+				time: current,
+			};
+
+			// 전체 메시지
+				this.session
+					.signal({
+						data: JSON.stringify(messageData),
+						to: [],
+						type: 'public-chat',
+					})
+					.then(() => {
+						console.log('메시지 전송 완료');
+					})
+					.catch(error => {
+						console.log(error);
+					});
+
+		},
         async getUsers() {
             // this.users.push(this.publisher)
             this.users.concat(this.subscribers);
@@ -156,6 +191,14 @@ export default {
       this.session.on("exception", ({ exception }) => {
         console.warn(exception);
       });
+
+      this.session.on('signal:public-chat', event => {
+				this.$refs.chat.addMessage(
+					event.data,
+					JSON.parse(event.data).sender === this.myUserName,
+					false,
+				);
+			});
 
       // --- 4) Connect to the session with a valid user token ---
 
@@ -262,7 +305,8 @@ export default {
         //     removeItem(index) {
         //       this.removeFromGlobalArray(index); // Удаление элемента из глобального массива
         //     }
-    }
+    },
+    
 }
 </script>
 <style scoped>
