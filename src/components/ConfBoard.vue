@@ -64,8 +64,8 @@ export default {
     data() {
         return {
             users: [],
-            isMicroActive: false,
-            isCamActive: false,
+            isMicroActive: true,
+            isCamActive: true,
 
             OV: undefined,
             session: undefined,
@@ -158,10 +158,12 @@ export default {
             // }
         },
         toggleMicrophone() {
-    this.isMicroActive = !this.isMicroActive;
+          this.isMicroActive = !this.isMicroActive;
+          this.publisher.publishAudio(this.isMicroActive)
     },
     toggleCamera() {
     this.isCamActive = !this.isCamActive;
+    this.publisher.publishVideo(this.isCamActive)
     },
     joinSession() {
       // --- 1) Get an OpenVidu object ---
