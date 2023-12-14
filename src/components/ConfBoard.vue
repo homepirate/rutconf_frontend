@@ -8,8 +8,8 @@
 				:subscribers="subscribers"/>
     </div>
     <div id="video-container" class="col-md-6">
-        <user-video :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" />
-        <user-video v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
+        <user-video class="user-video" :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" />
+        <user-video class="user-video" v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
           @click.native="updateMainVideoStreamManager(sub)" />
       </div>
     <div class="btn-micro-cam">
@@ -353,5 +353,17 @@ export default {
 .users--list::-webkit-scrollbar-track {
     background-color: transparent;
     /* Устанавливаем прозрачный цвет трека */
+}
+
+
+#video-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.user-video {
+  flex-basis: 33.33%;
+  margin: 2%; /* расположение 3 камер на одной линии, можно изменить значение для другого количества */
 }
 </style>
