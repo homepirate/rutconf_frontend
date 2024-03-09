@@ -84,18 +84,12 @@ export default {
             let strippeddMessage = state.message.trim();
 
 			if (strippeddMessage === '') return;
-            const url = `https://translation.googleapis.com/language/translate/v2`;
-        const response = await fetch(url, {
-        method: 'POST',
-        body: JSON.stringify({
-          q: strippeddMessage,
-          source: 'ru',
-          target: 'en'
-        })
-      });
+            const url = `https://api.mymemory.translated.net/get?q=${strippeddMessage}&langpair=ru|en`;
+        const response = await fetch(url);
       const data = await response.json();
       console.log(data)
-        translatedText = data.data.translations[0].translatedText;
+        let translatedText = data.responseData.translatedText;
+        console.log(translatedText)
         emit('message', {
 				content: translatedText,
                 to: state.selectedUser,
