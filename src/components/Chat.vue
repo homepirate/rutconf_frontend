@@ -10,8 +10,14 @@
         <div class="input-container">
             <my-input v-model="state.message"
 						@keydown.enter="sendMessage" type="text" placeholder="Введите сообщение" class="input" />
-            <button @click="sendMessage()" class="send-btn">
+            <button @click="sendMessage()" class="send-btn btn">
                 <Send></Send>
+            </button>
+            <button class="btn-text-to-voice btn">
+                <IconTTV></IconTTV>
+            </button>
+            <button class="btn-text-translator btn" @click="sendTranslateMessage()">
+                <IconTrans></IconTrans>
             </button>
         </div>
     </div>
@@ -19,11 +25,15 @@
 
 <script>
 import Send from './icons/Send.vue';
+import IconTrans from './icons/IconTrans.vue'
+import IconTTV from './icons/IconTTV.vue'
 import { reactive } from 'vue';
 
 export default {
     components: {
-        Send
+        Send,
+        IconTrans, 
+        IconTTV,
     },
     props: {
         // userList: {
@@ -69,6 +79,34 @@ export default {
 			console.log(state.subscribers);
 		};
 
+
+         const sendTranslateMessage = async ( ) => {
+            let strippeddMessage = state.message.trim();
+
+			if (strippeddMessage === '') return;
+            const url = `https://translation.googleapis.com/language/translate/v2`;
+        const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+          q: strippeddMessage,
+          source: 'ru',
+          target: 'en'
+        })
+      });
+      const data = await response.json();
+      console.log(data)
+        translatedText = data.data.translations[0].translatedText;
+        emit('message', {
+				content: translatedText,
+                to: state.selectedUser,
+			});
+
+			event.preventDefault(); // enter키 누를 때 줄바꿈 방지
+			state.message = ''; // 메시지 창 초기화
+    };
+
+        
+
 		const addMessage = async (messageData, isMyMessage, isPrivate) => {
 			let message = JSON.parse(messageData);
 
@@ -102,7 +140,7 @@ export default {
 			console.log("chaaaaaaaaaaaat", state.chats);
 		};
 
-		return { state, toggle, sendMessage, addMessage };
+		return { state, toggle, sendMessage, addMessage, sendTranslateMessage};
 	},
     data() {
         return {
@@ -142,7 +180,7 @@ export default {
     /* Использование свойства flex */
     flex-direction: column;
     /* Отображение элементов в столбец */
-    width: 327px;
+    width: 385px;
     height: 437px;
     border-radius: 15px;
     margin: 8px;
@@ -177,34 +215,34 @@ export default {
 .input-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
 }
 
 .input {
-    margin: 5px;
+    margin: 7px;
     margin-right: 0px;
-    margin-bottom: 7px;
     height: 30px;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 8px;
     flex: 1;
 }
 
-.send-btn {
+.btn {
     margin-right: 15px;
     width: 30px;
     height: 30px;
     background-size: cover;
     border: none;
     background-repeat: no-repeat;
-    background-color: transparent;
+    background-color: transparent;    
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
 
-.send-btn:hover {
+.btn:hover {
     transform: scale(1.1);
 }
+
 
 .messages::-webkit-scrollbar {
     width: 1px;

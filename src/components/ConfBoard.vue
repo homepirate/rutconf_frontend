@@ -315,7 +315,7 @@ export default {
 .users-chat {
     display: inline;
     float: left;
-    width: 342px;
+    width: 400px;
     height: 897px;
     border-radius: 15px;
     background: rgba(217, 217, 217, 1);
@@ -326,7 +326,7 @@ export default {
     background: rgba(93, 11, 161, 1);
     display: inline;
     float: left;
-    width: 327px;
+    width: 385px;
     height: 437px;
     border-radius: 15px;
     margin: 8px;
