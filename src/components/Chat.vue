@@ -13,10 +13,10 @@
             <button @click="sendMessage()" class="send-btn btn">
                 <Send></Send>
             </button>
-            <button class="btn-text-to-voice btn">
+            <button class="btn-text-to-voice btn" @click="sendTextToSpeech()">
                 <IconTTV></IconTTV>
             </button>
-            <button class="btn-text-translator btn" @click="sendTranslateMessage()">
+            <button class="btn-text-translator btn">
                 <IconTrans></IconTrans>
             </button>
         </div>
