@@ -95,7 +95,6 @@ export default {
                 to: state.selectedUser,
 			});
 
-			event.preventDefault(); // enter키 누를 때 줄바꿈 방지
 			state.message = ''; // 메시지 창 초기화
     };
 
