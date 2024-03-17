@@ -38,15 +38,12 @@
     </div>
 </template>
 <script>
-import { mapState, mapMutations } from 'vuex';
 import UserList from "@/components/UserList.vue";
-import User from "@/components/User.js"
 import Chat from "@/components/Chat.vue";
 import IconMicroON from './icons/IconMicroON.vue';
 import IconMicroOFF from './icons/IconMicroOFF.vue';
 import IconCamOFF from './icons/IconCamOFF.vue';
 import IconCamON from './icons/IconCamON.vue';
-// import UserVideo from "@/components/UI/UserVideo";
 import { OpenVidu } from "openvidu-browser";
 import axios from "axios";
 import UserVideo from "@/components/UI/UserVideo.vue"
@@ -134,12 +131,25 @@ export default {
 
 		},
 
-      speechText({content}){
-        const utterance = new SpeechSynthesisUtterance(content)
-        const voices = speechSynthesis.getVoices();
-        utterance.voice = voices[0]; 
-        speechSynthesis.speak(utterance);
-      },
+    speechText({ content }) {
+      let messageData = {
+          content: content,
+          sender: this.myUserName,
+          time: new Date().toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: false })
+      };
+
+      this.session.signal({
+          data: JSON.stringify(messageData),
+          to: [],
+          type: "public-audio-text" // Тип для аудио-сообщений
+      })
+      .then(() => {
+          console.log("Аудио-сообщение отправлено успешно");
+      })
+      .catch(error => {
+          console.error("Ошибка при отправке аудио-сообщения:", error);
+      });
+  },
       
       
         async getUsers() {
@@ -168,9 +178,9 @@ export default {
             //     console.error('Ошибка при получении списка пользователей:', error);
             // }
         },
-        toggleMicrophone() {
-          this.isMicroActive = !this.isMicroActive;
-          this.publisher.publishAudio(this.isMicroActive)
+    toggleMicrophone() {
+      this.isMicroActive = !this.isMicroActive;
+      this.publisher.publishAudio(this.isMicroActive)
     },
     toggleCamera() {
     this.isCamActive = !this.isCamActive;
@@ -212,6 +222,16 @@ export default {
 					false,
 				);
 			});
+      
+    this.session.on('signal:public-audio-text', event => {
+      let messageData = JSON.parse(event.data);
+      
+      // Создание и воспроизведение аудио из текста
+      const utterance = new SpeechSynthesisUtterance(messageData.content);
+      const voices = speechSynthesis.getVoices();
+      utterance.voice = voices[0]; 
+      speechSynthesis.speak(utterance);
+  });
 
       // --- 4) Connect to the session with a valid user token ---
 
