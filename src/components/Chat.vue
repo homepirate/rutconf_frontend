@@ -16,7 +16,7 @@
             <button class="btn-text-to-voice btn" @click="sendTextToSpeech()">
                 <IconTTV></IconTTV>
             </button>
-            <button class="btn-text-translator btn">
+            <button class="btn-text-translator btn" @click="sendTranslateMessage()">
                 <IconTrans></IconTrans>
             </button>
         </div>
@@ -98,6 +98,16 @@ export default {
 			state.message = ''; // 메시지 창 초기화
     };
 
+    const sendTextToSpeech = ( ) => {
+        let strippeddMessage = state.message.trim();
+
+        emit('speech', {
+        content: strippeddMessage,
+    });
+        state.message = '';
+    }
+
+
         
 
 		const addMessage = async (messageData, isMyMessage, isPrivate) => {
@@ -133,7 +143,7 @@ export default {
 			console.log("chaaaaaaaaaaaat", state.chats);
 		};
 
-		return { state, toggle, sendMessage, addMessage, sendTranslateMessage};
+		return { state, toggle, sendMessage, addMessage, sendTranslateMessage, sendTextToSpeech};
 	},
     data() {
         return {

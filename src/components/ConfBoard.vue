@@ -5,6 +5,7 @@
         </div>
         <chat class="chat" ref="chat"
 				@message="sendMessage"
+        @speech="speechText"
 				:subscribers="subscribers"/>
     </div>
     <div id="video-container" class="col-md-6">
@@ -109,6 +110,7 @@ export default {
 				minute: '2-digit',
 				hour12: false, // true인 경우 오후 10:25와 같이 나타냄.
 			});
+      
 
 			let messageData = {
 				content: content,
@@ -131,6 +133,15 @@ export default {
 					});
 
 		},
+
+      speechText({content}){
+        const utterance = new SpeechSynthesisUtterance(content)
+        const voices = speechSynthesis.getVoices();
+        utterance.voice = voices[0]; 
+        speechSynthesis.speak(utterance);
+      },
+      
+
         async getUsers() {
             // this.users.push(this.publisher)
             this.users.concat(this.subscribers);
