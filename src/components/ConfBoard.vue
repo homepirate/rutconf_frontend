@@ -141,7 +141,7 @@ export default {
         speechSynthesis.speak(utterance);
       },
       
-
+      
         async getUsers() {
             // this.users.push(this.publisher)
             this.users.concat(this.subscribers);
