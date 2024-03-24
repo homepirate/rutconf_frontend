@@ -1,0 +1,3 @@
+<template>
+    <svg width="90" height="90" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12 16V18M16 20H12H8M16 10.5L8 10.5M16 10.5L13 13.5M16 10.5L13 7.5M20 7V6C20 5.44772 19.5523 5 19 5H5C4.44772 5 4 5.44771 4 6V15C4 15.5523 4.44772 16 5 16H19C19.5523 16 20 15.5523 20 15V11" stroke="white" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+</template>

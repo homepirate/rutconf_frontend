@@ -10,10 +10,14 @@
     </div>
     <div id="video-container" class="col-md-6">
         <user-video class="user-video" :stream-manager="publisher" @click.native="updateMainVideoStreamManager(publisher)" />
+        <!-- <user-video class="user-video" :stream-manager="publisher_demo" @click.native="updateMainVideoStreamManager(publisher_demo)" /> -->
         <user-video class="user-video" v-for="sub in subscribers" :key="sub.stream.connection.connectionId" :stream-manager="sub"
           @click.native="updateMainVideoStreamManager(sub)" />
       </div>
     <div class="btn-micro-cam">
+      <my-button-mc @click="publishScreenShare">
+        <IconShare></IconShare>
+      </my-button-mc>
         <my-button-mc style="width:189px" @click="toggleMicrophone">
             <span style="display: flex; align-items: center;">
                 <IconMicroOFF v-if="!isMicroActive"></IconMicroOFF>
@@ -42,6 +46,7 @@ import UserList from "@/components/UserList.vue";
 import Chat from "@/components/Chat.vue";
 import IconMicroON from './icons/IconMicroON.vue';
 import IconMicroOFF from './icons/IconMicroOFF.vue';
+import IconShare from './icons/IconShare.vue';
 import IconCamOFF from './icons/IconCamOFF.vue';
 import IconCamON from './icons/IconCamON.vue';
 import { OpenVidu } from "openvidu-browser";
@@ -71,9 +76,14 @@ export default {
             publisher: undefined,
             subscribers: [],
 
+            publisher_demo: undefined,
+
             // Join form
             mySessionId:  window.location.href.split("/").at(-1),
             myUserName: this.selectedUser,
+
+            screensharing: false,
+
     
         }
     },
@@ -93,6 +103,7 @@ export default {
         IconCamON,
         IconCamOFF,
         UserVideo,
+        IconShare,
     },
     computed: {
         // ...mapState(['globalArray'])
@@ -273,6 +284,37 @@ export default {
 
       window.addEventListener("beforeunload", this.leaveSession);
     },
+
+
+    publishScreenShare() {
+
+  // Получаем поток с демонстрацией экрана
+  navigator.mediaDevices.getDisplayMedia()
+      .then(function(stream) {
+          // Получаем видео трек с потока
+          var videoTrack = stream.getVideoTracks()[0];
+
+          // Заменяем поток в Publisher на видео трек с демонстрацией экрана
+          this.publisher.replaceTrack(videoTrack);
+
+      })
+      .catch(function(error) {
+          console.error("Ошибка при получении демонстрации экрана: ", error);
+      });
+
+  //       this.getToken(this.mySessionId).then((token) => {
+  // this.session.connect(token)
+  // .then(() => {
+  //         this.publisher_demo = this.OV.initPublisher(undefined, { videoSource: "screen" });
+  //         // this.session.publish(this.publisher_demo);
+        
+
+  //     }).catch((error => {
+  //         console.warn('There was an error connecting to the session:', error.code, error.message);
+
+  //     }));
+  // });
+  },
 
     leaveSession() {
       // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
