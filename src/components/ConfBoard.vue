@@ -81,6 +81,7 @@ export default {
             // Join form
             mySessionId:  window.location.href.split("/").at(-1),
             myUserName: this.selectedUser,
+            sessionId: undefined,
 
             screensharing: false,
 
@@ -288,33 +289,23 @@ export default {
 
     publishScreenShare() {
 
-  // Получаем поток с демонстрацией экрана
-  navigator.mediaDevices.getDisplayMedia()
+    var self = this; // Сохраняем контекст this
+
+    // Получаем поток с демонстрацией экрана
+    navigator.mediaDevices.getDisplayMedia()
       .then(function(stream) {
           // Получаем видео трек с потока
           var videoTrack = stream.getVideoTracks()[0];
 
-          // Заменяем поток в Publisher на видео трек с демонстрацией экрана
-          this.publisher.replaceTrack(videoTrack);
+          // Заменяем видео трек в Publisher на новый трек
+          self.publisher.replaceTrack(videoTrack);
 
       })
       .catch(function(error) {
           console.error("Ошибка при получении демонстрации экрана: ", error);
       });
-
-  //       this.getToken(this.mySessionId).then((token) => {
-  // this.session.connect(token)
-  // .then(() => {
-  //         this.publisher_demo = this.OV.initPublisher(undefined, { videoSource: "screen" });
-  //         // this.session.publish(this.publisher_demo);
-        
-
-  //     }).catch((error => {
-  //         console.warn('There was an error connecting to the session:', error.code, error.message);
-
-  //     }));
-  // });
   },
+
 
     leaveSession() {
       // --- 7) Leave the session by calling 'disconnect' method over the Session object ---
