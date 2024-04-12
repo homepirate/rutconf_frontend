@@ -12,6 +12,7 @@
        global: {},
      },
      server: {
+      host: '0.0.0.0',
       https: {
         key: fs.readFileSync('key.pem'),
         cert: fs.readFileSync('cert.pem'),
